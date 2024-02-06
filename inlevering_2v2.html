@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fartsgrense Kalkulator</title>
+</head>
+<body>
+    <label for="hastighet">Skriv inn fartsgrense</label>
+    <input type="text" id="hastighet">
+    <br>
+    <button onclick="start()">Regn ut</button>
+    <button onclick="visStatistikk()">Vis statistikk</button>
+    <button onclick="nullstill()">Nullstill</button>
+    <p id="output"></p>
+    <p id="statestik"></p>
+
+    <label for="hastighet">Avvik:</label><p id="avvik"></p>
+ 
+    <script>
+        var antallBiler = 0;
+        var totalFart = 0;
+        var antallBrudd = 0;
+        var totalBot = 0;
+        var gjenomsnitsfart = 0;
+ 
+        function start() {
+            var hastighet = parseFloat(document.getElementById("hastighet").value);
+            var fartsgrense = 80;
+            var avvik;
+ 
+            if (hastighet > fartsgrense) {
+                avvik = hastighet - fartsgrense;
+                antallBrudd++;
+            } else {
+                avvik = fartsgrense - hastighet;
+            }
+ 
+            if (hastighet <= fartsgrense) {
+                document.getElementById("output").innerHTML = "Det er lovlig hastighet";
+            } else if (hastighet <= 90) {
+                document.getElementById("output").innerHTML = "Det blir 1500 i bot";
+                totalBot+= 1500;
+            } else {
+                document.getElementById("output").innerHTML = "Det blir 3000 i bot";
+                totalBot+= 3000;
+            }
+ 
+            antallBiler++;
+            totalFart += hastighet;
+ 
+            document.getElementById("avvik").innerHTML = "Avviket er " + avvik;
+        }
+ 
+        function visStatistikk() {
+            gjenomsnitsfart = totalFart/antallBiler;
+            document.getElementById("statestik").innerHTML = "antall Biler er " + antallBiler + "<br>" +
+                                                             "totalFarten er " + totalFart + "<br>" +
+                                                             "gjenomsnitsfarten er " + gjenomsnitsfart + "<br>" +
+                                                             "total Bot utelt er " + totalBot + "<br>" +
+                                                             "antall Brudd er " + antallBrudd + "<br>";
+        }
+ 
+        function nullstill() {
+            antallBiler = 0;
+            totalFart = 0;
+            antallBrudd = 0;
+            totalBot = 0;
+            gjenomsnitsfart = 0;
+ 
+            document.getElementById("statestik").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

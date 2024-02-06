@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script>
+var fart1 = 75;
+var fart2 = 85;
+
+var ledetekst = "Gjennomsnittsfarten er ";
+var gjennomsnittsfart = (fart1 + fart2) / 2;
+var fartsgrense = 80;
+alert(ledetekst + gjennomsnittsfart);
+
+if (fart1 <= 80) {
+    alert(fart1 + " er Lovlig fart");
+} else if (fart1 <= 90) {
+    alert("du sjører over 80 km i timen. det blir 1500 kr i bot");
+} else {
+    alert("du sjører over 90 km i timen. det blir 3000 kr i bot");
+}
+
+var erEnLovlig = (fart1 <= fartsgrense && fart2 > fartsgrense) || (fart1 > fartsgrense && fart2 <= fartsgrense);
+    alert("kun en en av hastighetene er lovlig: " + erEnLovlig);
+
+    </script>
+</body>
+
+</html>
